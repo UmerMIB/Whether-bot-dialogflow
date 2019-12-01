@@ -14,7 +14,7 @@ app.post('/webhook', function(request,response){
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
   
   function humidity( agent) {
-    console.log(`context are: `, request.body.queryResult.outputContexts)
+    console.log(`context are: `, request.body.queryResult.outputContexts);
     var cityContext = agent.context.get(`cityContext`);
     var cityName;
     if (agent.parameters.city){
@@ -26,7 +26,7 @@ app.post('/webhook', function(request,response){
       agent.add(`please mention city name `);
     }
 
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
     request(url, (error,response, body )=>{
       if (error){
         console.log(`Error while calling api`);
@@ -68,5 +68,9 @@ app.post('/webhook', function(request,response){
 
 
  let intentMap = new Map();
-
+ intentMap.set(`humidity`, humidity);
+ intentMap.set(`rain`, rain);
+ intentMap.set(`weather`, weather);
+ intentMap.set(`temperature`, temperature);
+ intentMap.set(`wind`, wind);
 })
