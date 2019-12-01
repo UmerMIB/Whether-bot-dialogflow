@@ -1,4 +1,4 @@
-const apiKey = process.env.apiKey;
+const apiKey =a7cbb97f5c95d2142229b9de277746d7;
 const request = require('request');
 const {WebhookClient} = require('dialogflow-fulfillment');
 const express = require(' express ');
@@ -53,7 +53,7 @@ app.post('/webhook', function(request,response){
 
  }
   
- function whether(agent){
+ function weather(agent){
   
  }
 
