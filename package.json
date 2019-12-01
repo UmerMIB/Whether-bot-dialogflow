@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/UmerMIB/Whether-bot-dialogflow/issues"
   },
-  "homepage": "https://github.com/UmerMIB/Whether-bot-dialogflow#readme"
+  "homepage": "https://github.com/UmerMIB/Whether-bot-dialogflow#readme",
+  "dependencies": {
+    "@types/node": "^12.12.14"
+  },
+  "devDependencies": {
+    "typescript": "^3.7.2"
+  }
 }
