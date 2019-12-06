@@ -69,7 +69,7 @@ app.post('/webhook', function(request,response){
     }
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
-    await request(url, function (error,response, body ){
+    await request(url, function (error,_response, body ){
       if (error){
         console.log(`Error while calling api`);
         agent.add(`Something went wrong while getting the information from External source`);
