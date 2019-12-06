@@ -18,7 +18,8 @@
     },
     "homepage": "https://github.com/UmerMIB/Whether-bot-dialogflow#readme",
     "dependencies": {
-        "@types/node": "^12.12.14"
+        "@types/node": "^12.12.14",
+        "request": "^2.88.0"
     },
     "devDependencies": {
         "typescript": "^3.7.2"
