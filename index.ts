@@ -1,6 +1,6 @@
-const apiKey =a7cbb97f5c95d2142229b9de277746d7;
+const apiKey ="a7cbb97f5c95d2142229b9de277746d7";
 const request = require('request');
-const {WebhookClient} = require('dialogflow-fulfillment');
+const {WebhookClient, Card} = require('dialogflow-fulfillment');
 const express = require(' express ');
 const bodyParser = require('body-parser');
 const app = express.use(bodyParser.json());
@@ -19,8 +19,8 @@ app.post('/webhook', function(request,response){
     var cityName;
     if (agent.parameters.city){
       cityName = agent.parameters.city;
-    }else if(cityContext.parameters.geo-city){
-      cityName = cityContext.parameters.geo-city;
+    }else if(cityContext.parameters.geoCity){
+      cityName = cityContext.parameters.geoCity;
     }else{
       console.log(`City name is not provided`);
       agent.add(`please mention city name `);
@@ -47,8 +47,8 @@ app.post('/webhook', function(request,response){
           text : `The humidity in ${cityName} is ${weather.main.humidity}% `
         })
       );
-    }
- }
+    })
+  }
  function rain(agent){
 
  }
