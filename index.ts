@@ -56,7 +56,40 @@ app.post('/webhook', function(request,response){
  }
   
  function weather(agent){
-  
+  console.log(`context are: `, request.body.queryResult.outputContexts);
+    var cityContext = agent.context.get(`cityContext`);
+    var cityName;
+    if (agent.parameters.city){
+      cityName = agent.parameters.city;
+    }else if(cityContext.parameters.geoCity){
+      cityName = cityContext.parameters.geoCity;
+    }else{
+      console.log(`City name is not provided`);
+      agent.add(`please mention city name `);
+    }
+
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
+    request(url, (error,response, body )=>{
+      if (error){
+        console.log(`Error while calling api`);
+        agent.add(`Something went wrong while getting the information from External source`);
+      }
+      let weather  = JSON.parse(body);
+      console.log(`whether is: \n ${weather}`);
+      agent.context.set({
+        'name':'cityContext',
+        'lifespan': 5,
+        'parameters':{
+          'geo-city':cityName,
+          }
+      });
+      agent.add(new Card ({
+          title : `Whether Update`,
+          imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
+          text : `The humidity in ${cityName} is ${weather.main.humidity}% `
+        })
+      );
+    })
  }
 
  function temperature(agent){
