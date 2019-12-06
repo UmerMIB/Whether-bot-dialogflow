@@ -55,7 +55,7 @@ app.post('/webhook', function(request,response){
 
  }
   
- function weather(agent){
+ async function weather(agent){
   console.log(`context are: `, request.body.queryResult.outputContexts);
     var cityContext = agent.context.get(`citycontext`);
     var cityName;
@@ -69,7 +69,7 @@ app.post('/webhook', function(request,response){
     }
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
-    request(url, (error,response, body )=>{
+    await request(url, (error,response, body )=>{
       if (error){
         console.log(`Error while calling api`);
         agent.add(`Something went wrong while getting the information from External source`);
