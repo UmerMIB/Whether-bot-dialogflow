@@ -75,5 +75,7 @@ app.post('/webhook', function(request,response){
  intentMap.set(`weather`, weather);
  intentMap.set(`temperature`, temperature);
  intentMap.set(`wind`, wind);
+
+ _agent.handleRequest(intentMap);
 })
 app.listen( port, ()=>{ console.log(`Server is running at ${port}`) } );
