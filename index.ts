@@ -89,7 +89,7 @@ app.post('/webhook', function(request,response){
           text : `The humidity in ${cityName} is ${weather.main.humidity}% `
         })
       );
-    })
+    });
  }
 
  function temperature(agent){
