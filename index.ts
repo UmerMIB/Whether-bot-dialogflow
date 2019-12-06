@@ -17,7 +17,7 @@ app.post('/webhook', function(request,response){
   
   function humidity( agent) {
     console.log(`context are: `, request.body.queryResult.outputContexts);
-    var cityContext = agent.context.get(`cityContext`);
+    var cityContext = agent.context.get(`citycontext`);
     var cityName;
     if (agent.parameters.city){
       cityName = agent.parameters.city;
@@ -37,7 +37,7 @@ app.post('/webhook', function(request,response){
       let weather  = JSON.parse(body);
       console.log(`whether is: \n ${weather}`);
       agent.context.set({
-        'name':'cityContext',
+        'name':cityContext,
         'lifespan': 5,
         'parameters':{
           'geoCity':cityName,
@@ -57,7 +57,7 @@ app.post('/webhook', function(request,response){
   
  function weather(agent){
   console.log(`context are: `, request.body.queryResult.outputContexts);
-    var cityContext = agent.context.get(`cityContext`);
+    var cityContext = agent.context.get(`citycontext`);
     var cityName;
     if (agent.parameters.city){
       cityName = agent.parameters.city;
@@ -77,7 +77,7 @@ app.post('/webhook', function(request,response){
       let weather  = JSON.parse(body);
       console.log(`whether is: \n ${weather}`);
       agent.context.set({
-        'name':'cityContext',
+        'name':cityContext,
         'lifespan': 5,
         'parameters':{
           'geoCity':cityName,
