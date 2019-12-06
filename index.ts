@@ -4,6 +4,8 @@ const {WebhookClient, Card} = require('dialogflow-fulfillment');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express().use(bodyParser.json());
+const port = process.env.PORT || 5000;
+
 app.use(bodyParser.urlencoded({ extended: false }))
 
 process.env.DEBUG = 'dialogflow:*';
@@ -74,3 +76,4 @@ app.post('/webhook', function(request,response){
  intentMap.set(`temperature`, temperature);
  intentMap.set(`wind`, wind);
 })
+app.listen( port, ()=>{ console.log(`Server is running at ${5000}`) } );
