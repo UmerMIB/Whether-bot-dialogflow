@@ -40,7 +40,7 @@ app.post('/webhook', function(request,response){
         'name':'cityContext',
         'lifespan': 5,
         'parameters':{
-          'geo-city':cityName,
+          'geoCity':cityName,
           }
       });
       agent.add(new Card ({
@@ -80,7 +80,7 @@ app.post('/webhook', function(request,response){
         'name':'cityContext',
         'lifespan': 5,
         'parameters':{
-          'geo-city':cityName,
+          'geoCity':cityName,
           }
       });
       agent.add(new Card ({
