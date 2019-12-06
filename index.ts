@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 process.env.DEBUG = 'dialogflow:*';
 
 app.post('/webhook', function(request,response){
-    const _agent = new WebhookClient ({ request, response });
+    const agent = new WebhookClient ({ request, response });
     console.log('Dialogflow Request headers: ' + JSON.stringify(request.headers));
   console.log('Dialogflow Request body: ' + JSON.stringify(request.body));
   
@@ -109,6 +109,6 @@ app.post('/webhook', function(request,response){
  intentMap.set(`temperature`, temperature);
  intentMap.set(`wind`, wind);
 
- _agent.handleRequest(intentMap);
+ agent.handleRequest(intentMap);
 })
 app.listen( port, ()=>{ console.log(`Server is running at ${port}`) } );
