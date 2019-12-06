@@ -1,5 +1,5 @@
 const apiKey ="a7cbb97f5c95d2142229b9de277746d7";
-var request = require('request');
+var rq = require('request');
 const {WebhookClient, Card} = require('dialogflow-fulfillment');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -69,7 +69,7 @@ app.post('/webhook', function(request,response){
     }
 
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
-    await request(url, function (error,_response, body ){
+    await rq(url, function (error,_response, body ){
       if (error){
         console.log(`Error while calling api`);
         agent.add(`Something went wrong while getting the information from External source`);
