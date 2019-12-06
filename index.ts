@@ -3,7 +3,7 @@ const request = require('request');
 const {WebhookClient, Card} = require('dialogflow-fulfillment');
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express.use(bodyParser.json());
+const app = express().use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }))
 
 process.env.DEBUG = 'dialogflow:*';
