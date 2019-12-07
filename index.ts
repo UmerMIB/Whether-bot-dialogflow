@@ -75,7 +75,7 @@ app.post('/webhook', function(request,response){
         if (error){
           console.log(`Error while calling api`);
           agent.add(`Something went wrong while getting the information from External source`);
-        }else{
+        }
           let weather  = JSON.parse(body);
           console.log('whether is: \n ' + weather);
           agent.add(`ew`)
@@ -95,7 +95,7 @@ app.post('/webhook', function(request,response){
           //     buttonUrl:`button url`
           //   })
           // );
-        }
+        
       });
   } catch (error) {
     console.log(`Error occurred in async function : \n`, error)
