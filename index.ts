@@ -76,7 +76,7 @@ app.post('/webhook', function(request,response){
           agent.add(`Something went wrong while getting the information from External source`);
         }else{
           let weather  = JSON.parse(body);
-          console.log(`whether is: \n ${weather}`);
+          console.log('whether is: \n ' + weather);
           agent.context.set({
             'name':'citycontext',
             'lifespan': 5,
@@ -87,7 +87,9 @@ app.post('/webhook', function(request,response){
           agent.add(new Card ({
               title : `Whether Update`,
               imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
-              text : `The humidity in ${cityName} is ${weather.main.humidity}% `
+              text : `The humidity in ${cityName} is ${weather.main.humidity}% `,
+              buttonText: `this is a button`,
+              buttonUrl:`button url`
             })
           );
         }
