@@ -62,9 +62,9 @@ app.post('/webhook', function(request,response){
       console.log('context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
-        cityName = agent.parameters.geoCity;
-      }else if(cityContext.parameters.geoCity){
-        cityName = cityContext.parameters.geoCity;
+        cityName = agent.parameters['geoCity'];
+      }else if(cityContext.parameters['geoCity']){
+        cityName = cityContext.parameters['geoCity'];
       }else{
         console.log(`City name is not provided`);
         agent.add(`please mention city name `);
