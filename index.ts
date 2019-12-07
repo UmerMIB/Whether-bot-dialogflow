@@ -87,13 +87,13 @@ app.post('/webhook', function(request,response){
           return agent.add(new Card ({
               title : `Whether Update`,
               imageUrl: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
-              text : `The temperature in ${cityName} is ${weather.main.temp}% `,
+              text : `The temperature in cityName is weather.main.temp% `,
               buttonText: `this is a button`,
               buttonUrl:`button url`
             })
           );
-        }
-      });
+        // }
+      // });
   } catch (error) {
     console.log(`Error occurred in async function : \n`, error)
   }
