@@ -77,7 +77,7 @@ app.post('/webhook', function(request,response){
         }else{
           let weather  = JSON.parse(body);
           console.log('whether is: \n ' + weather);
-          agent.add(new Card ({
+          return agent.add(new Card ({
               title : `Whether Update`,
               imageUrl: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
               text : `The temperature in ${cityName} is ${weather.main.temp}% `,
