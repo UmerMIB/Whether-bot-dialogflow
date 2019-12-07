@@ -77,7 +77,7 @@ app.post('/webhook', function(request,response){
         }else{
           let weather  = JSON.parse(body);
           console.log('whether is: \n ' + weather);
-          agent.context.set({
+          agent.setContext({
             'name':'citycontext',
             'lifespan': 5,
             'parameters':{
