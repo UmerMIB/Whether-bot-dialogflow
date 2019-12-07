@@ -56,41 +56,45 @@ app.post('/webhook', function(request,response){
  }
   
  async function weather(agent){
-  console.log(`context are: `, request.body.queryResult.outputContexts);
-    var cityContext = agent.context.get(`citycontext`);
-    var cityName;
-    if (agent.parameters.city){
-      cityName = agent.parameters.city;
-    }else if(cityContext.parameters.geoCity){
-      cityName = cityContext.parameters.geoCity;
-    }else{
-      console.log(`City name is not provided`);
-      agent.add(`please mention city name `);
-    }
-
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
-    await rq(url, function (error,_response, body ){
-      if (error){
-        console.log(`Error while calling api`);
-        agent.add(`Something went wrong while getting the information from External source`);
+  try {
+      console.log(`context are: `, request.body.queryResult.outputContexts);
+      var cityContext = agent.context.get(`citycontext`);
+      var cityName;
+      if (agent.parameters.city){
+        cityName = agent.parameters.city;
+      }else if(cityContext.parameters.geoCity){
+        cityName = cityContext.parameters.geoCity;
       }else{
-        let weather  = JSON.parse(body);
-        console.log(`whether is: \n ${weather}`);
-        // agent.context.set({
-        //   'name':'citycontext',
-        //   'lifespan': 5,
-        //   'parameters':{
-        //     'geoCity':cityName,
-        //     }
-        // });
-        agent.add(new Card ({
-            title : `Whether Update`,
-            imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
-            text : `The humidity in ${cityName} is ${weather.main.humidity}% `
-          })
-        );
+        console.log(`City name is not provided`);
+        agent.add(`please mention city name `);
       }
-    });
+  
+      let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
+      await rq(url, function (error,_response, body ){
+        if (error){
+          console.log(`Error while calling api`);
+          agent.add(`Something went wrong while getting the information from External source`);
+        }else{
+          let weather  = JSON.parse(body);
+          console.log(`whether is: \n ${weather}`);
+          // agent.context.set({
+          //   'name':'citycontext',
+          //   'lifespan': 5,
+          //   'parameters':{
+          //     'geoCity':cityName,
+          //     }
+          // });
+          agent.add(new Card ({
+              title : `Whether Update`,
+              imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
+              text : `The humidity in ${cityName} is ${weather.main.humidity}% `
+            })
+          );
+        }
+      });
+  } catch (error) {
+    console.log(`Error occurred in async function : \n`, error)
+  }
  }
 
  function temperature(agent){
