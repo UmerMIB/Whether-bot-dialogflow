@@ -69,9 +69,9 @@ app.post('/webhook', function(request,response){
         console.log(`City name is not provided`);
         agent.add(`please mention city name `);
       }
-  
+      return new Promise ((resolved , _reject )=>{ 
       let url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&units=metric&appid=${apiKey}`;
-      await rq(url, function (error,_response, body ){
+       rq(url, function (error,_response, body ){
         if (error){
           console.log(`Error while calling api`);
           agent.add(`Something went wrong while getting the information from External source`);
@@ -79,6 +79,7 @@ app.post('/webhook', function(request,response){
           let weather  = JSON.parse(body);
           console.log('whether is: \n ' + weather);
           agent.add(`ew`)
+          resolved();
           // agent.context.set({
           //   'name':'citycontext',
           //   'lifespan': 5,
@@ -97,6 +98,7 @@ app.post('/webhook', function(request,response){
           // );
         
       });
+    })
   } catch (error) {
     console.log(`Error occurred in async function : \n`, error)
   }
