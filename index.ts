@@ -17,7 +17,7 @@ app.post('/webhook', function(request,response){
   
  function humidity( agent) {
     var cityContext = agent.context.get(`citycontext`);
-      console.log('context is ',cityContext)
+      console.log('humidity context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
         cityName = agent.parameters['geoCity'];
@@ -56,7 +56,7 @@ app.post('/webhook', function(request,response){
  }
  function rain(agent){
   var cityContext = agent.context.get(`citycontext`);
-      console.log('context is ',cityContext)
+      console.log('rain context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
         cityName = agent.parameters['geoCity'];
@@ -96,7 +96,7 @@ app.post('/webhook', function(request,response){
   
  function weather(agent){
       var cityContext = agent.context.get(`citycontext`);
-      console.log('context is ',cityContext)
+      console.log(' weather context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
         cityName = agent.parameters['geoCity'];
@@ -115,6 +115,7 @@ app.post('/webhook', function(request,response){
           reject();
         }
         let weather  = JSON.parse(body);
+        let jdescription= weather.weather[0].description;
         console.log('whether is: \n ' + weather);
         agent.context.set({
           'name':'citycontext',
@@ -124,7 +125,7 @@ app.post('/webhook', function(request,response){
         agent.add(new Card ({
           title : `Whether Update`,
           imageUrl: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuqgV7ULWjc32FYJQqOIyrWA-W8NP8qzkjiBkQnD4uVNdsRXziYw`,
-          text : `The weather in ${cityName} is ${weather.weather[0].description} `,
+          text : `The weather in ${cityName} is ${jdescription} `,
           buttonText: `this is a button`,
           buttonUrl:`button url`
           })
@@ -136,7 +137,7 @@ app.post('/webhook', function(request,response){
 
  function temperature(agent){
   var cityContext = agent.context.get(`citycontext`);
-      console.log('context is ',cityContext)
+      console.log('temperature context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
         cityName = agent.parameters['geoCity'];
@@ -176,7 +177,7 @@ app.post('/webhook', function(request,response){
 
  function wind(agent){
   var cityContext = agent.context.get(`citycontext`);
-      console.log('context is ',cityContext)
+      console.log('wind context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
         cityName = agent.parameters['geoCity'];
