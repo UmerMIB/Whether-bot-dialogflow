@@ -59,6 +59,7 @@ app.post('/webhook', function(request,response){
   try {
       console.log(`context are: `, request.body.queryResult.outputContexts);
       var cityContext = agent.context.get(`citycontext`);
+      console.log('context is ',cityContext)
       var cityName;
       if (agent.parameters.geoCity){
         cityName = agent.parameters.geoCity;
