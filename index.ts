@@ -114,8 +114,8 @@ app.post('/webhook', function(request,response){
           agent.add(`Something went wrong while getting the information from External source`);
           reject();
         }
-        let weather  = JSON.parse(body);
-        let jdescription= weather.weather[0].description;
+        let data  = JSON.parse(body);
+        let jdescription= data.weather[0].description;
         console.log('whether is: \n ' + weather);
         agent.context.set({
           'name':'citycontext',
