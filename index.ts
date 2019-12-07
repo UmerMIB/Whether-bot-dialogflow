@@ -86,7 +86,7 @@ app.post('/webhook', function(request,response){
           });
           agent.add(new Card ({
               title : `Whether Update`,
-              imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
+              imageUrl: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
               text : `The humidity in ${cityName} is ${weather.main.humidity}% `,
               buttonText: `this is a button`,
               buttonUrl:`button url`
