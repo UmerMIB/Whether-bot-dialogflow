@@ -40,10 +40,7 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':{
-            'geoCity':cityName,
-            'geoCity.original':cityName,
-          }
+          'parameters': cityContext.parameters,
         });
         agent.add(new Card ({
           title : `Humidity Update`,
@@ -82,15 +79,12 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':{
-            'geoCity':cityName,
-            'geoCity.original':cityName,
-          }
+          'parameters':cityContext.parameters,
         });
         agent.add(new Card ({
           title : `Rain Update`,
           imageUrl: `http://weather.smh.com.au/styles/icons/fairfax/large/possible_shower.png?1480640737`,
-          text : `The temperature in ${cityName} is ${weather.main.temp} `,
+          text :  (!(weather.rain)) ? "The rain is not expected in " + cityName : "The rainfall in Last 3 hours is " + weather.rain["3h"] + "mm",
           buttonText: `this is a button`,
           buttonUrl:`button url`
           })
@@ -125,10 +119,7 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':{
-            'geoCity':cityName,
-            'geoCity.original':cityName,
-          }
+          'parameters':cityContext.parameters
         });
         agent.add(new Card ({
           title : `Whether Update`,
@@ -168,10 +159,7 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':{
-            'geoCity':cityName,
-            'geoCity.original':cityName,
-          }
+          'parameters':cityContext.parameters
         });
         agent.add(new Card ({
           title : `Temperature Update`,
@@ -211,10 +199,7 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':{
-            'geoCity':cityName,
-            'geoCity.original':cityName,
-          }
+          'parameters':cityContext.parameters
         });
         agent.add(new Card ({
           title : `Wind Update`,
