@@ -83,13 +83,15 @@ app.post('/webhook', function(request,response){
           'geoCity':cityName,
           }
       });
-      return agent.add(new Card ({
+      agent.add(new Card ({
           title : `Whether Update`,
           imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
           text : `The humidity in ${cityName} is ${weather.main.humidity}% `
         })
       );
+
     });
+    return
  }
 
  function temperature(agent){
