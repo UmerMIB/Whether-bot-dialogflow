@@ -60,8 +60,8 @@ app.post('/webhook', function(request,response){
       console.log(`context are: `, request.body.queryResult.outputContexts);
       var cityContext = agent.context.get(`citycontext`);
       var cityName;
-      if (agent.parameters.city){
-        cityName = agent.parameters.city;
+      if (agent.parameters.geoCity){
+        cityName = agent.parameters.geoCity;
       }else if(cityContext.parameters.geoCity){
         cityName = cityContext.parameters.geoCity;
       }else{
@@ -77,13 +77,13 @@ app.post('/webhook', function(request,response){
         }else{
           let weather  = JSON.parse(body);
           console.log(`whether is: \n ${weather}`);
-          // agent.context.set({
-          //   'name':'citycontext',
-          //   'lifespan': 5,
-          //   'parameters':{
-          //     'geoCity':cityName,
-          //     }
-          // });
+          agent.context.set({
+            'name':'citycontext',
+            'lifespan': 5,
+            'parameters':{
+              'geoCity':cityName,
+              }
+          });
           agent.add(new Card ({
               title : `Whether Update`,
               imageURL: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwFfMsIQfjNUeY2QlP7bh9rT2HpXWwHQkRm_pv73oC7AePtidMkA`,
