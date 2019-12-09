@@ -82,7 +82,10 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':cityContext.parameters,
+          'parameters':{
+            'geoCity': cityName,
+            'geoCity.original': cityName,
+          }
         });
         agent.add(new Card ({
           title : `Rain Update`,
@@ -166,7 +169,10 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':cityContext.parameters
+          'parameters':{
+            'geoCity': cityName,
+            'geoCity.original': cityName,
+          }
         });
         agent.add(new Card ({
           title : `Temperature Update`,
@@ -206,7 +212,10 @@ app.post('/webhook', function(request,response){
         agent.context.set({
           'name':'citycontext',
           'lifespan': 5,
-          'parameters':cityContext.parameters
+          'parameters':{
+            'geoCity': cityName,
+            'geoCity.original': cityName,
+          }
         });
         agent.add(new Card ({
           title : `Wind Update`,
