@@ -1,4 +1,4 @@
-const apiKey ="a7cbb97f5c95d2142229b9de277746d7";
+const apiKey ="yourApikey";
 var rq = require('request');
 const {WebhookClient, Card} = require('dialogflow-fulfillment');
 const express = require('express');
